@@ -1,0 +1,13 @@
+
+<%= form_with model: @game, local: true do |f| %>
+  Players:
+  <ul>
+    <%= f.fields_for :players do |players_form| %>
+      <li>
+        <%= players_form.label :name %>
+        <%= players_form.text_field :name %>
+      </li>
+    <% end %>
+  <%= f.submit "Submit"%>
+  </ul>
+<% end %>
