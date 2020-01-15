@@ -1,3 +1,7 @@
 <h1>Welcome to this game</h1>
 
+<% @game.players.each do |player| %>
+  <%= "#{player.name}: #{player.score}" %>
+<% end %>
+
 <%= link_to "new round", new_round_path(game: @game) %>
