@@ -5,7 +5,7 @@
     <%= f.fields_for :players do |players_form| %>
       <li>
         <%= players_form.label :name %>
-        <%= players_form.text_field :name %>
+        <%= players_form.text_field :name, required: true%>
       </li>
     <% end %>
   <%= f.submit "Submit"%>

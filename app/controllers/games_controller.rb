@@ -2,8 +2,11 @@ class GamesController < ApplicationController
   def create
     @new_game = Game.new(game_params)
     @new_game.start = Date.today
-    @new_game.save
-    redirect_to game_path(@new_game)
+    if @new_game.save
+      redirect_to game_path(@new_game)
+    else
+      render "games/new"
+    end
   end
 
   def new

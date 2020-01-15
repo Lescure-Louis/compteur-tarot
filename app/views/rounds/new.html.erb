@@ -1,0 +1,17 @@
+<%= simple_form_for @round do |f| %>
+  <%= f.error_notification %>
+  <%= f.association :player, collection: @round.game.players, prompt: "Preneur" %>
+  <%= f.input :game_id, :as => :hidden, default: params[:game] %>
+  <%= f.input :contract %>
+  <%= f.input :bouts %>
+  <%= f.input :attackPts %>
+  <%= f.input :defensePts %>
+  <%= f.input :petitAuBout %>
+  <%= f.input :levee %>
+  <%= f.input :chelem %>
+  <%= f.button :submit %>
+<% end %>
+
+
+
+
