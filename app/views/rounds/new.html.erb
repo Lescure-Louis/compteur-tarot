@@ -6,14 +6,30 @@
   <%= f.input :bouts %>
   <%= f.input :attackPts %>
   <%= f.input :defensePts %>
-  <%= simple_fields_for :other do |o| %>
-    <%= o.input :petit, as: :boolean, label: 'Petit au Bout',input_html: {class: "click-pab"}  %>
-  <% end %>
+  <%= f.input :help, as: :boolean, label: 'Petit au Bout',input_html: {class: "click-pab"}  %>
   <div class="d-none pab-choix">
     <%= f.input :petitAuBout, label: "", as: :radio_buttons, collection: ['attaque','defense']%>
   </div>
-  <%= f.input :levee %>
-  <%= f.input :chelem %>
+  <%= f.input :help, as: :boolean, label: 'Levée',input_html: {class: "click-levee"}  %>
+  <div class="d-none levee-choix">
+    <div class="attaque">
+      <%= f.input :help, as: :boolean, label: 'attaque',input_html: {class: "click-levee"}  %>
+    </div>
+    <div class="test"></div>
+    <div class="defense">
+      <%= f.input :help, as: :boolean, label: 'defense',input_html: {class: "click-levee "}  %>
+    </div>
+  </div>
+  <div class="d-none atc-choix">
+    <%= f.input :levee, label: "", as: :radio_buttons, collection: [["Simple", "atc-S" ], ["Double", "atc-D" ], ["Triple", "atc-T" ]] %>
+  </div>
+  <div class="d-none d-choix">
+    <%= f.input :levee, label: "", as: :radio_buttons, collection: [["Simple", "def-S" ], ["Double", "def-D" ], ["Triple", "def-T" ]] %>
+  </div>
+  <%= f.input :help, as: :boolean, label: 'Chelem',input_html: {class: "click-chelem"}  %>
+  <div class="d-none chelem-choix">
+    <%= f.input :chelem, label: "", as: :radio_buttons, collection: ["anoncé", "non-anoncé", "non-réalisé"] %>
+  </div>
   <%= f.button :submit %>
 <% end %>
 

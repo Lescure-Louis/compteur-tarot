@@ -5,6 +5,7 @@ class RoundsController < ApplicationController
   end
 
   def create
+    raise
     @round = Round.new(round_params)
     @round.player = Player.find(params[:round][:player_id])
     @round.game = Game.find(params[:round][:game_id])
@@ -20,12 +21,12 @@ class RoundsController < ApplicationController
   private
 
   def round_params
-    params.require(:round).permit(:player, :game, :bouts, :defensePts, :contract, :attackPts, :petitAuBout, :levee, :chelem)
+    params.require(:round).permit(:player, :game, :bouts, :defensePts, :contract, :attackPts, :petitAuBout, :levee, :chelem, :other)
   end
 
   def update_player_score(player)
     points = calculate_score
-    player == @round.player ? player.score += points*3 : player.score -= points
+    player == @round.player ? player.score += points * 3 : player.score -= points
     player.save
   end
 

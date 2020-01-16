@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_16_132022) do
+ActiveRecord::Schema.define(version: 2020_01_16_200933) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,6 +19,13 @@ ActiveRecord::Schema.define(version: 2020_01_16_132022) do
     t.date "start"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "others", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "round_id"
+    t.index ["round_id"], name: "index_others_on_round_id"
   end
 
   create_table "players", force: :cascade do |t|
@@ -32,20 +39,22 @@ ActiveRecord::Schema.define(version: 2020_01_16_132022) do
 
   create_table "rounds", force: :cascade do |t|
     t.string "contract"
-    t.string "bouts"
+    t.integer "bouts"
     t.integer "attackPts"
     t.integer "defensePts"
     t.string "petitAuBout"
-    t.boolean "levee"
-    t.boolean "chelem"
+    t.string "levee"
+    t.string "chelem"
     t.bigint "game_id"
     t.bigint "player_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "help"
     t.index ["game_id"], name: "index_rounds_on_game_id"
     t.index ["player_id"], name: "index_rounds_on_player_id"
   end
 
+  add_foreign_key "others", "rounds"
   add_foreign_key "players", "games"
   add_foreign_key "rounds", "games"
   add_foreign_key "rounds", "players"
