@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_14_153852) do
+ActiveRecord::Schema.define(version: 2020_01_16_132022) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,10 +32,10 @@ ActiveRecord::Schema.define(version: 2020_01_14_153852) do
 
   create_table "rounds", force: :cascade do |t|
     t.string "contract"
-    t.integer "bouts"
+    t.string "bouts"
     t.integer "attackPts"
     t.integer "defensePts"
-    t.boolean "petitAuBout"
+    t.string "petitAuBout"
     t.boolean "levee"
     t.boolean "chelem"
     t.bigint "game_id"

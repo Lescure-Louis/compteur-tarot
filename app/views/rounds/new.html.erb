@@ -6,7 +6,12 @@
   <%= f.input :bouts %>
   <%= f.input :attackPts %>
   <%= f.input :defensePts %>
-  <%= f.input :petitAuBout %>
+  <%= simple_fields_for :other do |o| %>
+    <%= o.input :petit, as: :boolean, label: 'Petit au Bout',input_html: {class: "click-pab"}  %>
+  <% end %>
+  <div class="d-none pab-choix">
+    <%= f.input :petitAuBout, label: "", as: :radio_buttons, collection: ['attaque','defense']%>
+  </div>
   <%= f.input :levee %>
   <%= f.input :chelem %>
   <%= f.button :submit %>

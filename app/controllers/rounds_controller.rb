@@ -25,7 +25,7 @@ class RoundsController < ApplicationController
 
   def update_player_score(player)
     points = calculate_score
-    player == @round.player ? player.score += points : player.score += 0 - points
+    player == @round.player ? player.score += points*3 : player.score -= points
     player.save
   end
 
@@ -42,7 +42,8 @@ class RoundsController < ApplicationController
   end
 
   def calculate_score
-    points = calculate_point_value(@round.attackPts) + 25
+    points = calculate_point_value(@round.attackPts)
+    points.positive? ? points += 25 : points -= 25
     points += 10 if @round.petitAuBout
     points *= 2 if @round.contract == "Garde"
     points *= 4 if @round.contract == "Garde Sans"

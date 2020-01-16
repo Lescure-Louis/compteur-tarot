@@ -1,8 +1,11 @@
+COL = [nil, "attaque", "defense"]
+
 class Round < ApplicationRecord
   belongs_to :game
   belongs_to :player
   validates :contract, presence: true, inclusion: { in: ["Prise", "Garde", "Garde Sans", "Garde Contre"] }
   validates :bouts, presence: true, inclusion: { in: [0, 1, 2, 3] }
+  validates :petitAuBout, inclusion: { in: [nil, "attaque", "defense"] }
   validate :sum_equals_91
 
 
