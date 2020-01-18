@@ -5,11 +5,11 @@ class RoundsController < ApplicationController
   end
 
   def create
-    raise
     @round = Round.new(round_params)
     @round.player = Player.find(params[:round][:player_id])
     @round.game = Game.find(params[:round][:game_id])
     @round.game.players.each { |player| update_player_score(player)}
+    write_scores
     if @round.save
       redirect_to game_path(@round.game)
     else
@@ -42,13 +42,52 @@ class RoundsController < ApplicationController
     end
   end
 
-  def calculate_score
-    points = calculate_point_value(@round.attackPts)
-    points.positive? ? points += 25 : points -= 25
-    points += 10 if @round.petitAuBout
+
+  def add_petit_au_bout(points)
+    points += 10 if @round.petitAuBout == "attaque"
+    points -= 10 if @round.petitAuBout == "defense"
+    points
+  end
+
+  def contact_multplier(points)
     points *= 2 if @round.contract == "Garde"
     points *= 4 if @round.contract == "Garde Sans"
     points *= 6 if @round.contract == "Garde Contre"
+    points
+  end
+
+  def add_levee(points)
+    extra = 30 if @round.levee.include? "S"
+    extra = 60 if @round.levee.include? "D"
+    extra = 90 if @round.levee.include? "T"
+    points += extra if @round.levee.include?("atc")
+    points -= extra if @round.levee.include?("def")
+    points
+  end
+
+  def add_chelem(points)
+    points += 400 if @round.chelem == "anoncé"
+    points += 200 if @round.chelem == "non-anoncé"
+    points -= 200 if @round.chelem == "non-réalisé"
+    points
+  end
+
+  def write_scores
+    scores=""
+    @round.game.players.each do |player|
+      scores << "#{player.name}: #{player.score} |"
+    end
+    @round.scores = scores
+  end
+
+
+  def calculate_score
+    points = calculate_point_value(@round.attackPts)
+    points.positive? ? points += 25 : points -= 25
+    points = add_petit_au_bout(points)
+    points = contact_multplier(points)
+    points = add_levee(points)
+    points = add_chelem(points)
     points
   end
 end
