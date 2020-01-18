@@ -8,6 +8,9 @@ class RoundsController < ApplicationController
     @round = Round.new(round_params)
     @round.player = Player.find(params[:round][:player_id])
     @round.game = Game.find(params[:round][:game_id])
+    unless @round.help1.nil?
+      @round.levee = @round.help1
+    end
     @round.game.players.each { |player| update_player_score(player)}
     write_scores
     if @round.save
