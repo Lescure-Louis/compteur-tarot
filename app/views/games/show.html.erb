@@ -1,8 +1,11 @@
 <h1>Welcome to this game</h1>
 
-<% @game.rounds.each do |round| %>
-  <%= "#{round.scores}" %>
+<% @game.rounds.each_with_index do |round, index| %>
+  <%= "Round #{index + 1}: #{round.scores}" %>
   <br>
 <% end %>
 
-<%= link_to "new round", new_round_path(game: @game) %>
+<%= link_to new_round_path(game: @game), class: "btn-round sticky removelinkdefault" do %>
+  <i class="fas fa-plus"></i>
+<% end %>
+

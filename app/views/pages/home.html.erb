@@ -1,2 +1,6 @@
-<h1>Bienvenue au compteur de points Tarot!</h1>
-<%= link_to "nouvelle partie", new_game_path %>
+<h1 class="text-center">Bienvenue au compteur de points Tarot!</h1>
+<%= link_to  new_game_path, class: "mx-auto removelinkdefault" do %>
+  <%= render "shared/button"  %>
+<% end %>
+
+

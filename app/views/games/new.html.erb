@@ -1,13 +1,21 @@
-
-<%= form_with model: @game, local: true do |f| %>
-  Players:
-  <ul>
-    <%= f.fields_for :players do |players_form| %>
-      <li>
-        <%= players_form.label :name %>
-        <%= players_form.text_field :name, required: true%>
-      </li>
-    <% end %>
-  <%= f.submit "Submit"%>
-  </ul>
-<% end %>
+<h1>Création de votre partie</h1>
+<div class="container-fluid lower-page new-game">
+  <div class="row justify-content-center" >
+    <div class="events-info col-10 col-lg-6">
+      <%= form_with model: @game, local: true do |f| %>
+       <p>Indiquez le nom des 4 joueurs</p>
+        <ul class="list">
+          <% num = 1 %>
+          <%= f.fields_for :players do |players_form| %>
+            <li>
+              <%= players_form.label "Joueur #{num}" %>
+              <%= players_form.text_field :name, required: true%>
+            </li>
+            <% num += 1 %>
+          <% end %>
+        <%= f.submit "Submit",  class: "button-start", value: "Commencer la partie", id: "submit" %>
+        </ul>
+      <% end %>
+     </div>
+  </div>
+</div>
