@@ -6,31 +6,38 @@
   <%= f.input :bouts %>
   <%= f.input :attackPts %>
   <%= f.input :defensePts %>
-  <%= f.input :help, as: :boolean, label: 'Petit au Bout',input_html: {class: "click-pab"}  %>
-  <div class="d-none pab-choix">
-    <%= f.input :petitAuBout, label: "", as: :radio_buttons, collection: ['attaque','defense']%>
+  <div class="d-flex justify-content-between">
+    <%= f.input :help, as: :boolean, label: 'Petit au Bout',input_html: {class: "click-pab"}  %>
+    <%= f.input :help, as: :boolean, label: 'Levée',input_html: {class: "click-levee"}  %>
+    <%= f.input :help, as: :boolean, label: 'Chelem',input_html: {class: "click-chelem"}  %>
   </div>
-  <%= f.input :help, as: :boolean, label: 'Levée',input_html: {class: "click-levee"}  %>
-  <div class="d-none levee-choix">
-    <div class="attaque">
-      <%= f.input :help, as: :boolean, label: 'attaque',input_html: {class: "click-levee"}  %>
+  <div class="d-flex justify-content-between">
+    <div class="d-none pab-choix">
+      <%= f.input :petitAuBout, label: "", as: :radio_buttons, collection: ['attaque','defense']%>
     </div>
-    <div class="test"></div>
-    <div class="defense">
-      <%= f.input :help, as: :boolean, label: 'defense',input_html: {class: "click-levee "}  %>
+    <div class="d-none levee-choix">
+      <div class="attaque">
+        <%= f.input :help, as: :boolean, label: 'attaque',input_html: {class: "click-levee"}  %>
+      </div>
+      <div class="test"></div>
+      <div class="defense">
+        <%= f.input :help, as: :boolean, label: 'defense',input_html: {class: "click-levee "}  %>
+      </div>
+    </div>
+    <div class="d-none atc-choix">
+      <%= f.input :levee, label: "", as: :radio_buttons, collection: [["Simple", "atc-S" ], ["Double", "atc-D" ], ["Triple", "atc-T" ]] %>
+    </div>
+    <div class="d-none d-choix">
+      <%= f.input :help1, label: "", as: :radio_buttons, collection: [["Simple", "def-S" ], ["Double", "def-D" ], ["Triple", "def-T" ]] %>
+    </div>
+    <div class="d-none chelem-choix">
+      <%= f.input :chelem, label: "", as: :radio_buttons, collection: ["anoncé", "non-anoncé", "non-réalisé"] %>
     </div>
   </div>
-  <div class="d-none atc-choix">
-    <%= f.input :levee, label: "", as: :radio_buttons, collection: [["Simple", "atc-S" ], ["Double", "atc-D" ], ["Triple", "atc-T" ]] %>
+
+  <div class="text-center">
+    <%= f.button :submit, 'Créer la manche', class: "button-start" %>
   </div>
-  <div class="d-none d-choix">
-    <%= f.input :help1, label: "", as: :radio_buttons, collection: [["Simple", "def-S" ], ["Double", "def-D" ], ["Triple", "def-T" ]] %>
-  </div>
-  <%= f.input :help, as: :boolean, label: 'Chelem',input_html: {class: "click-chelem"}  %>
-  <div class="d-none chelem-choix">
-    <%= f.input :chelem, label: "", as: :radio_buttons, collection: ["anoncé", "non-anoncé", "non-réalisé"] %>
-  </div>
-  <%= f.button :submit %>
 <% end %>
 
 
