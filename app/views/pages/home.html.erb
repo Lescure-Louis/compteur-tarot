@@ -1,6 +1,12 @@
-<h1 class="text-center">Bienvenue au compteur de points Tarot!</h1>
+<br>
 <%= link_to  new_game_path, class: "mx-auto removelinkdefault" do %>
   <%= render "shared/button"  %>
+<br>
+  <h5>Charger une ancienne partie:</h5>
+
+  <% Game.all.each do |game|%>
+    <%= render "shared/game-card", game: game%>
+  <% end %>
 <% end %>
 
 

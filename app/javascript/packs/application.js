@@ -14,3 +14,13 @@ import { chelem } from "../plugins/chelem";
 if (document.querySelector(".click-chelem")) {
   chelem();
 };
+
+// import { bouts } from "../plugins/bouts";
+// if (document.querySelector(".new-round")) {
+//   bouts();
+// };
+
+import { points } from "../plugins/points";
+if (document.querySelector(".new-round")) {
+  points();
+};

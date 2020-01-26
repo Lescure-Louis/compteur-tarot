@@ -16,11 +16,11 @@ const levée = () => {
 
   checkAtc.addEventListener('click', (event)=> {
     choixAtc.classList.toggle("d-none");
-    if (test.innerHTML === ""){
-      test.innerHTML = "inputAtc";
-    } else {
-      test.innerHTML = "";
-    }
+    // if (test.innerHTML === ""){
+    //   test.innerHTML = "inputAtc";
+    // } else {
+    //   test.innerHTML = "";
+    // }
     checkD.classList.toggle("d-none");
 
   });

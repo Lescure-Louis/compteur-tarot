@@ -1,0 +1,17 @@
+.topbar{
+  height: 60px;
+  width: 100%;
+  background-color: green;
+  z-index:20;
+  border-bottom: solid grey 1px;
+  font-size: 35px;
+  color: white;
+
+  p{
+    font-size:24px;
+  }
+  i{
+      color: white;
+
+  }
+}

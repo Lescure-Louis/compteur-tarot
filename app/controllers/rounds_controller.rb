@@ -6,7 +6,9 @@ class RoundsController < ApplicationController
 
   def create
     @round = Round.new(round_params)
-    @round.player = Player.find(params[:round][:player_id])
+    unless params[:round][:player_id].empty?
+      @round.player = Player.find(params[:round][:player_id])
+    end
     @round.game = Game.find(params[:round][:game_id])
     unless @round.help1.nil?
       @round.levee = @round.help1
@@ -16,6 +18,7 @@ class RoundsController < ApplicationController
     if @round.save
       redirect_to game_path(@round.game)
     else
+      @round.game = Game.find(params[:round][:game_id])
       render "new"
     end
   end

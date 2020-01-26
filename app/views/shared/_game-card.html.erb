@@ -1,0 +1,15 @@
+<div class="card ">
+  <div class="d-flex align-items-center mt-2">
+    <div class="d-flex date">
+      <i class="far fa-calendar-alt mr-1"></i>
+    <%= game.start.strftime("%d/%m") %>
+    </div>
+    <div class="d-flex users">
+      <i class="fas fa-users mr-1"></i>
+      <% game.players.each do |player|%>
+        <%= player.name %>
+      <% end %>
+    </div>
+  </div>
+<%= link_to "", game_path(game), class: "link" %>
+</div>
